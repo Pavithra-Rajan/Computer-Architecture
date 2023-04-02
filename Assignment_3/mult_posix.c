@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
-#include <sys/time.h>
+#include <time.h>
 
-#define ROWS 1000
-#define COLS 1000
+#define ROWS 2000
+#define COLS 2000
 #define THREADS 4
 
 int mat1[ROWS][COLS];
@@ -35,8 +35,9 @@ void *multiply(void *arg) {
 int main() {
     pthread_t threads[THREADS];
     struct thread_arg t_args[THREADS];
-    struct timeval start, end;
-    long long elapsed_time;
+
+    clock_t start_time, end_time;
+    double thread_time;
 
     for (int i = 0; i < ROWS; i++) {
         for (int j = 0; j < COLS; j++) {
@@ -45,7 +46,7 @@ int main() {
         }
     }
 
-    gettimeofday(&start, NULL);
+    start_time = clock();
 
     int block_size = ROWS / THREADS;
     for (int i = 0; i < THREADS; i++) {
@@ -61,10 +62,9 @@ int main() {
         pthread_join(threads[i], NULL);
     }
 
-    gettimeofday(&end, NULL);
-    elapsed_time = (end.tv_sec - start.tv_sec) * 1000000LL + (end.tv_usec - start.tv_usec);
-
-    printf("Time taken: %lld microseconds\n", elapsed_time);
+    end_time = clock();
+    thread_time = (double)(end_time - start_time) / CLOCKS_PER_SEC;
+    printf("Execution time with POSIX threads: %f seconds\n", thread_time);
 
     return 0;
 }

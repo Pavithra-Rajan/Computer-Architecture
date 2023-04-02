@@ -2,44 +2,54 @@
 #include <stdlib.h>
 #include <cuda_runtime.h>
 
-__global__ void matrix_multiply(float *A, float *B, float *C, int M, int N, int K)
+__global__ void matrix_multiply(float *A, float *B, float *C, int ROWS, int COLS)
 {
     int i = blockIdx.y * blockDim.y + threadIdx.y;
     int j = blockIdx.x * blockDim.x + threadIdx.x;
-    if (i < M && j < K) {
+    if (i < ROWS && j < COLS)
+    {
         float sum = 0.0f;
-        for (int k = 0; k < N; ++k) {
-            sum += A[i*N+k] * B[k*K+j];
+        for (int k = 0; k < COLS; ++k)
+        {
+            sum += A[i * COLS + k] * B[k * COLS + j];
         }
-        C[i*K+j] = sum;
+        C[i * COLS + j] = sum;
     }
 }
 
 int main()
 {
-    int M = 1000; // number of rows in A
-    int N = 2000; // number of columns in A and rows in B
-    int K = 3000; // number of columns in B
-    float *A, *B, *C; // matrices
+    int ROWS = 2000; // number of rows
+    int COLS = 2000; // number of columns 
+
+    cudaEvent_t start, stop;
+    cudaEventCreate(&start);
+    cudaEventCreate(&stop);
+
+    float *A, *B, *C;       // matrices
     float *d_A, *d_B, *d_C; // device matrices
-    size_t sizeA = M * N * sizeof(float);
-    size_t sizeB = N * K * sizeof(float);
-    size_t sizeC = M * K * sizeof(float);
+    size_t sizeA = ROWS * COLS * sizeof(float);
+    size_t sizeB = COLS * COLS * sizeof(float);
+    size_t sizeC = ROWS * COLS * sizeof(float);
 
     // allocate memory for host matrices
-    A = (float*)malloc(sizeA);
-    B = (float*)malloc(sizeB);
-    C = (float*)malloc(sizeC);
+    A = (float *)malloc(sizeA);
+    B = (float *)malloc(sizeB);
+    C = (float *)malloc(sizeC);
 
     // initialize host matrices with random data
-    for (int i = 0; i < M; ++i) {
-        for (int j = 0; j < N; ++j) {
-            A[i*N+j] = rand() / (float)RAND_MAX;
+    for (int i = 0; i < ROWS; ++i)
+    {
+        for (int j = 0; j < COLS; ++j)
+        {
+            A[i * COLS + j] = rand() / (float)RAND_MAX;
         }
     }
-    for (int i = 0; i < N; ++i) {
-        for (int j = 0; j < K; ++j) {
-            B[i*K+j] = rand() / (float)RAND_MAX;
+    for (int i = 0; i < COLS; ++i)
+    {
+        for (int j = 0; j < COLS; ++j)
+        {
+            B[i * COLS + j] = rand() / (float)RAND_MAX;
         }
     }
 
@@ -54,11 +64,18 @@ int main()
 
     // set grid and block sizes for kernel launch
     dim3 threadsPerBlock(32, 32);
-    dim3 numBlocks((K + threadsPerBlock.x - 1) / threadsPerBlock.x,
-                   (M + threadsPerBlock.y - 1) / threadsPerBlock.y);
+    dim3 numBlocks((COLS + threadsPerBlock.x - 1) / threadsPerBlock.x,
+                   (ROWS + threadsPerBlock.y - 1) / threadsPerBlock.y);
 
     // launch kernel to perform matrix multiplication on device
-    matrix_multiply<<<numBlocks, threadsPerBlock>>>(d_A, d_B, d_C, M, N, K);
+    cudaEventRecord(start);
+    matrix_multiply<<<numBlocks, threadsPerBlock>>>(d_A, d_B, d_C, ROWS, COLS);
+    cudaEventRecord(stop);
+    cudaEventSynchronize(stop);
+
+    float milliseconds = 0;
+    cudaEventElapsedTime(&milliseconds, start, stop);
+    printf("Execution time with CUDA: %f seconds\n", milliseconds / 1000.0f);
 
     // copy result matrix from device to host
     cudaMemcpy(C, d_C, sizeC, cudaMemcpyDeviceToHost);
@@ -67,15 +84,15 @@ int main()
     cudaFree(d_A);
     cudaFree(d_B);
     cudaFree(d_C);
-
+    /*
     // print result matrix
     printf("Result matrix:\n");
-    for (int i = 0; i < M; ++i) {
+    for (int i = 0; i < ROWS; ++i) {
         for (int j = 0; j < K; ++j) {
             printf("%f ", C[i*K+j]);
         }
         printf("\n");
-    }
+    }*/
 
     // free host memory
     free(A);

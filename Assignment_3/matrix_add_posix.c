@@ -3,7 +3,7 @@
 #include <pthread.h>
 #include <time.h>
 
-#define N 15000
+#define N 5
 #define THREADS 4
 int a[N][N], b[N][N], c[N][N];
 
