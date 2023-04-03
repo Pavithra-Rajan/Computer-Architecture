@@ -9,7 +9,7 @@ L2 = 2 MB, 4 MB, 8 MB
 |1|Pavithra Rajan|B190632CS|
 |2|Cliford Joshy|B190539CS|
 |3|Karthik Sridhar|B190467CS|
-|4|Jesvin Madonna Sebastian|B190700CS|
+|4|Jesvin Sebastian Madona|B190700CS|
 
 ## Installation and set-up
 ```console
