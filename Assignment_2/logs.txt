@@ -1,0 +1,177 @@
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 22.1.0.0
+gem5 compiled Apr  3 2023 13:29:39
+gem5 started Apr  7 2023 02:05:13
+gem5 executing on pavithra, pid 11995
+command line: /home/pavithra/gem5/build/X86/gem5.opt -d /home/pavithra/gem5/m5out/16KB_2MB /home/pavithra/gem5/configs/example/se.py -c 429.mcf/src/benchmark -o 429.mcf/data/inp.in -I 21000000000 --cpu-type=TimingSimpleCPU --caches --l2cache --l1d_size=8kB --l1i_size=8kB --l2_size=2MB --l1d_assoc=2 --l1i_assoc=2 --l2_assoc=1 --cacheline_size=64
+
+warn: The `get_runtime_isa` function is deprecated. Please migrate away from using this function.
+warn: The `get_runtime_isa` function is deprecated. Please migrate away from using this function.
+Global frequency set at 1000000000000 ticks per second
+warn: No dot file generated. Please install pydot to generate the dot file and pdf.
+build/X86/mem/dram_interface.cc:690: warn: DRAM device capacity (8192 Mbytes) does not match the address range assigned (512 Mbytes)
+0: system.remote_gdb: listening for remote gdb on port 7000
+**** REAL SIMULATION ****
+build/X86/sim/simulate.cc:192: info: Entering event queue @ 0.  Starting simulation...
+build/X86/sim/mem_state.cc:443: info: Increasing stack size by one page.
+
+MCF SPEC CPU2006 version 1.10
+Copyright (c) 1998-2000 Zuse Institut Berlin (ZIB)
+Copyright (c) 2000-2002 Andreas Loebel & ZIB
+Copyright (c) 2003-2005 Andreas Loebel
+
+nodes                      : 5985
+active arcs                : 102404
+simplex iterations         : 63475
+objective value            : 3180065918
+build/X86/sim/syscall_emul.hh:1313: warn: mremapping to new vaddr 0x7fffeba72000-0x7ffff77ce000, adding 192000000
+build/X86/sim/syscall_emul.hh:1332: warn: returning 0x7fffeba72000 as start
+new implicit arcs          : 2393292
+active arcs                : 2495696
+simplex iterations         : 118645
+objective value            : 2060055866
+erased arcs                : 2387557
+build/X86/sim/syscall_emul.hh:1313: warn: mremapping to new vaddr 0x7fffd45fb000-0x7fffeba72000, adding 192000000
+build/X86/sim/syscall_emul.hh:1332: warn: returning 0x7fffd45fb000 as start
+checksum                   : 2997477
+done
+Exiting @ tick 30500324709500 because exiting with last active thread context
+
+real	229m26.756s
+user	229m31.900s
+sys	0m0.625s
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 22.1.0.0
+gem5 compiled Apr  3 2023 13:29:39
+gem5 started Apr  7 2023 05:54:40
+gem5 executing on pavithra, pid 13638
+command line: /home/pavithra/gem5/build/X86/gem5.opt -d /home/pavithra/gem5/m5out/32KB_2MB /home/pavithra/gem5/configs/example/se.py -c 429.mcf/src/benchmark -o 429.mcf/data/inp.in -I 21000000000 --cpu-type=TimingSimpleCPU --caches --l2cache --l1d_size=16kB --l1i_size=16kB --l2_size=2MB --l1d_assoc=2 --l1i_assoc=2 --l2_assoc=1 --cacheline_size=64
+
+warn: The `get_runtime_isa` function is deprecated. Please migrate away from using this function.
+warn: The `get_runtime_isa` function is deprecated. Please migrate away from using this function.
+Global frequency set at 1000000000000 ticks per second
+warn: No dot file generated. Please install pydot to generate the dot file and pdf.
+build/X86/mem/dram_interface.cc:690: warn: DRAM device capacity (8192 Mbytes) does not match the address range assigned (512 Mbytes)
+0: system.remote_gdb: listening for remote gdb on port 7000
+**** REAL SIMULATION ****
+build/X86/sim/simulate.cc:192: info: Entering event queue @ 0.  Starting simulation...
+build/X86/sim/mem_state.cc:443: info: Increasing stack size by one page.
+
+MCF SPEC CPU2006 version 1.10
+Copyright (c) 1998-2000 Zuse Institut Berlin (ZIB)
+Copyright (c) 2000-2002 Andreas Loebel & ZIB
+Copyright (c) 2003-2005 Andreas Loebel
+
+nodes                      : 5985
+active arcs                : 102404
+simplex iterations         : 63475
+objective value            : 3180065918
+build/X86/sim/syscall_emul.hh:1313: warn: mremapping to new vaddr 0x7fffeba72000-0x7ffff77ce000, adding 192000000
+build/X86/sim/syscall_emul.hh:1332: warn: returning 0x7fffeba72000 as start
+new implicit arcs          : 2393292
+active arcs                : 2495696
+simplex iterations         : 118645
+objective value            : 2060055866
+erased arcs                : 2387557
+build/X86/sim/syscall_emul.hh:1313: warn: mremapping to new vaddr 0x7fffd45fb000-0x7fffeba72000, adding 192000000
+build/X86/sim/syscall_emul.hh:1332: warn: returning 0x7fffd45fb000 as start
+checksum                   : 2997477
+done
+Exiting @ tick 30226871854500 because exiting with last active thread context
+
+real	232m3.095s
+user	232m7.905s
+sys	0m0.761s
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 22.1.0.0
+gem5 compiled Apr  3 2023 13:29:39
+gem5 started Apr  7 2023 12:06:27
+gem5 executing on pavithra, pid 18431
+command line: /home/pavithra/gem5/build/X86/gem5.opt -d /home/pavithra/gem5/m5out/64KB_2MB /home/pavithra/gem5/configs/example/se.py -c 429.mcf/src/benchmark -o 429.mcf/data/inp.in -I 21000000000 --cpu-type=TimingSimpleCPU --caches --l2cache --l1d_size=32kB --l1i_size=32kB --l2_size=2MB --l1d_assoc=2 --l1i_assoc=2 --l2_assoc=1 --cacheline_size=64
+
+warn: The `get_runtime_isa` function is deprecated. Please migrate away from using this function.
+warn: The `get_runtime_isa` function is deprecated. Please migrate away from using this function.
+Global frequency set at 1000000000000 ticks per second
+warn: No dot file generated. Please install pydot to generate the dot file and pdf.
+build/X86/mem/dram_interface.cc:690: warn: DRAM device capacity (8192 Mbytes) does not match the address range assigned (512 Mbytes)
+0: system.remote_gdb: listening for remote gdb on port 7000
+**** REAL SIMULATION ****
+build/X86/sim/simulate.cc:192: info: Entering event queue @ 0.  Starting simulation...
+build/X86/sim/mem_state.cc:443: info: Increasing stack size by one page.
+
+MCF SPEC CPU2006 version 1.10
+Copyright (c) 1998-2000 Zuse Institut Berlin (ZIB)
+Copyright (c) 2000-2002 Andreas Loebel & ZIB
+Copyright (c) 2003-2005 Andreas Loebel
+
+nodes                      : 5985
+active arcs                : 102404
+simplex iterations         : 63475
+objective value            : 3180065918
+build/X86/sim/syscall_emul.hh:1313: warn: mremapping to new vaddr 0x7fffeba72000-0x7ffff77ce000, adding 192000000
+build/X86/sim/syscall_emul.hh:1332: warn: returning 0x7fffeba72000 as start
+new implicit arcs          : 2393292
+active arcs                : 2495696
+simplex iterations         : 118645
+objective value            : 2060055866
+erased arcs                : 2387557
+build/X86/sim/syscall_emul.hh:1313: warn: mremapping to new vaddr 0x7fffd45fb000-0x7fffeba72000, adding 192000000
+build/X86/sim/syscall_emul.hh:1332: warn: returning 0x7fffd45fb000 as start
+checksum                   : 2997477
+done
+Exiting @ tick 29934591990500 because exiting with last active thread context
+
+real	267m58.096s
+user	241m55.473s
+sys	0m8.025s
+gem5 Simulator System.  https://www.gem5.org
+gem5 is copyrighted software; use the --copyright option for details.
+
+gem5 version 22.1.0.0
+gem5 compiled Apr  3 2023 13:29:39
+gem5 started Apr  7 2023 16:53:21
+gem5 executing on pavithra, pid 36718
+command line: /home/pavithra/gem5/build/X86/gem5.opt -d /home/pavithra/gem5/m5out/16KB_8MB /home/pavithra/gem5/configs/example/se.py -c 429.mcf/src/benchmark -o 429.mcf/data/inp.in -I 21000000000 --cpu-type=TimingSimpleCPU --caches --l2cache --l1d_size=8kB --l1i_size=8kB --l2_size=8MB --l1d_assoc=2 --l1i_assoc=2 --l2_assoc=1 --cacheline_size=64
+
+warn: The `get_runtime_isa` function is deprecated. Please migrate away from using this function.
+warn: The `get_runtime_isa` function is deprecated. Please migrate away from using this function.
+Global frequency set at 1000000000000 ticks per second
+warn: No dot file generated. Please install pydot to generate the dot file and pdf.
+build/X86/mem/dram_interface.cc:690: warn: DRAM device capacity (8192 Mbytes) does not match the address range assigned (512 Mbytes)
+0: system.remote_gdb: listening for remote gdb on port 7000
+**** REAL SIMULATION ****
+build/X86/sim/simulate.cc:192: info: Entering event queue @ 0.  Starting simulation...
+build/X86/sim/mem_state.cc:443: info: Increasing stack size by one page.
+
+MCF SPEC CPU2006 version 1.10
+Copyright (c) 1998-2000 Zuse Institut Berlin (ZIB)
+Copyright (c) 2000-2002 Andreas Loebel & ZIB
+Copyright (c) 2003-2005 Andreas Loebel
+
+nodes                      : 5985
+active arcs                : 102404
+simplex iterations         : 63475
+objective value            : 3180065918
+build/X86/sim/syscall_emul.hh:1313: warn: mremapping to new vaddr 0x7fffeba72000-0x7ffff77ce000, adding 192000000
+build/X86/sim/syscall_emul.hh:1332: warn: returning 0x7fffeba72000 as start
+new implicit arcs          : 2393292
+active arcs                : 2495696
+simplex iterations         : 118645
+objective value            : 2060055866
+erased arcs                : 2387557
+build/X86/sim/syscall_emul.hh:1313: warn: mremapping to new vaddr 0x7fffd45fb000-0x7fffeba72000, adding 192000000
+build/X86/sim/syscall_emul.hh:1332: warn: returning 0x7fffd45fb000 as start
+checksum                   : 2997477
+done
+Exiting @ tick 26262187554500 because exiting with last active thread context
+
+real	221m53.623s
+user	221m47.182s
+sys	0m3.280s
+
