@@ -24,8 +24,8 @@ git clone https://gem5.googlesource.com/public/gem5
 cd gem5
 scons build/<configuration>/gem5.opt -j <number of CPUs>
 ```
-As my system us x86, I will replace <configuration> with ```X86```. You can find the configuration and the number of CPUs by running the lscpu command.
-```opt``` indicates debug and optimisation. ```debug``` can be used during debgugging gem5 code without any optimisation. Other binaries to describe the optimisation level are fast, perf and prof.
+As my system uses x86, I will replace ```<configuration>``` with ```X86```. You can find the configuration and the number of CPUs by running the lscpu command.
+```opt``` indicates debug and optimisation. ```debug``` can be used during debugging gem5 code without any optimisation. Other binaries to describe the optimisation level are fast, perf and prof.
 
 ## Run gem5
 
@@ -49,7 +49,7 @@ In this script, the directory for gem5, SPEC benchmark and the input arg file pa
 
 <strong>Note: As we had to evaluate the metrics across varying L1 cache sizes of 16KB, 32KB and 64KB, we have split the size equally between L1d and L1i during the simulation. </strong>
 
-TimingSimpleCPU is a CPU model provides a simplified, cycle-accurate timing model of a simple, in-order, single-issue processor. It models the functional behavior of a CPU without considering many of the implementation details that affect performance, such as pipelining, caching, and branch prediction.
+TimingSimpleCPU is a CPU model that provides a simplified, cycle-accurate timing model of a simple, in-order, single-issue processor. It models the functional behavior of a CPU without considering many of the implementation details that affect performance, such as pipelining, caching, and branch prediction.
 
 While this model is not intended to simulate the performance of a modern CPU accurately, it can be useful for simulating the behavior of simple programs and for quick, initial exploration of system-level performance tradeoffs.
 
@@ -100,7 +100,7 @@ The benchmark uses a set of real-world data files that represent transportation 
 
 Note: As the values of Data hit rate of L1D cache were very close by, we have plotted just the variation of the L1d hit rate with 2MB L2 cache. 
 
-We can see that for a given L2 cahce size, the L1 hit rate for both Data and Intruction Cache at the L1 level decreases.
+We can see that for a given L2 cache size, the L1 hit rate for both Data and Instruction Cache at the L1 level decreases.
 
 ### L2 Cache size v/s L2 Hit rate across different L1 cache sizes
 <img src="FIGURES/l2_vs_l2hit.png" alt="l2-l2hit" width="500">
@@ -118,7 +118,7 @@ Complementary to the above graph, we can observe a similar trend here with the s
 
 ### L2 Cache size v/s L2 AMAT across different L1 cache sizes
 ![l2-AMATl2](FIGURES/l2_vs_AMAT_l2.png)
-In this graph, we can observe that as the size of L2 cache increase, there is a sharp decline in the AMAT. However, as the L1 cache size increases, there is an increase in the AMAT at the L2 level.
+<br> In this graph, we can observe that as the size of L2 cache increases, there is a sharp decline in the AMAT. However, as the L1 cache size increases, there is an increase in the AMAT at the L2 level.
 
 ### Table of data obtained
 ![table1](FIGURES/table1.png)
@@ -165,7 +165,7 @@ tree - L 1
 
 12 directories, 13 files
 ```
-- build - formed after running the scond build command
+- build - formed after running the second build command
 - build_opts - holds files that define default settings for build of different configurations
 - configs - contains simulation configurations
 - ext - contains gem5 dependencies which are external to gem5
@@ -178,13 +178,13 @@ tree - L 1
 ## gem5 Notes
 - gem5 is an amalgamation of m5 and GEMS. 
 
-- m5 is developed by the University of Michigan with multiple CPU models and ISA. It also has classical memory model. CPU and memory in m5 interact with each other as master and slave using the available m5 ports.
+- m5 is developed by the University of Michigan with multiple CPU models and ISA. It also has a classical memory model. CPU and memory in m5 interact with each other as master and slave using the available m5 ports.
 
-- GEMS is built by University of Wisconsin with Ruby memory model.  It has difference coherence protocols. 
+- GEMS is built by University of Wisconsin with Ruby memory model.  It has different coherence protocols. 
 
 - gem5 is a modular discrete event driven simulator. Events are stored in event queue and each event has a timestamp associated with it. 
 
-- It is a full system simulator as it can simualte both user and kernal code. (SE and FS mode)
+- It is a full system simulator as it can simulate both user and kernel code. (SE and FS mode)
 
 - It can operate in the SE mode which is the SysCall Emulation mode. It emulates the system level code. 
 
