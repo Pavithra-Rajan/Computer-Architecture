@@ -3,8 +3,8 @@
 #include <pthread.h>
 #include <time.h>
 
-#define N 5
-#define THREADS 4
+#define N 15000
+#define THREADS 10
 int a[N][N], b[N][N], c[N][N];
 
 struct thread_data

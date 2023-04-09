@@ -3,19 +3,18 @@
 #include <omp.h>
 #include <sys/resource.h>
 
-#define ROWS 15000
-#define COLS 15000
+#define N 15000
 
-int matrix1[ROWS][COLS];
-int matrix2[ROWS][COLS];
-int result[ROWS][COLS];
+int matrix1[N][N];
+int matrix2[N][N];
+int result[N][N];
 
 int main()
 {
 
-    for (int i = 0; i < ROWS; ++i)
+    for (int i = 0; i < N; ++i)
     {
-        for (int j = 0; j < COLS; ++j)
+        for (int j = 0; j < N; ++j)
         {
             matrix1[i][j] = i + j;
             matrix2[i][j] = i * j;
@@ -26,9 +25,9 @@ int main()
 
     int i, j;
 #pragma omp parallel for shared(matrix1, matrix2, result) private(i, j)
-    for (i = 0; i < ROWS; i++)
+    for (i = 0; i < N; i++)
     {
-        for (j = 0; j < COLS; j++)
+        for (j = 0; j < N; j++)
         {
             result[i][j] = matrix1[i][j] + matrix2[i][j];
         }
@@ -44,9 +43,9 @@ int main()
 
     start_time = omp_get_wtime();
 
-    for (i = 0; i < ROWS; i++)
+    for (i = 0; i < N; i++)
     {
-        for (j = 0; j < COLS; j++)
+        for (j = 0; j < N; j++)
         {
             result[i][j] = matrix1[i][j] + matrix2[i][j];
         }

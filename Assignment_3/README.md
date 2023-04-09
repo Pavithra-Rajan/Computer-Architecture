@@ -5,7 +5,17 @@
 |1|Pavithra Rajan|B190632CS|
 |2|Cliford Joshy|B190539CS|
 |3|Karthik Sridhar|B190467CS|
-|4|Jesvin Madonna Sebastian|B190700CS|
+|4|Jesvin Sebastian Madona|B190700CS|
+
+## File Description
+|S.L. No.| File | Description| 
+| ----- | -------- | -------- | 
+|1|matrix_add_cuda.cu|This CUDA C program does Matrix addition|
+|2|matrix_add_openmp.c|This program written in C performs Matrix Addition using OpenMP|
+|3|matrix_add_posix.c|This program written in C performs Matrix Addition using POSIX Threads|
+|4|mult_cuda.cu|This CUDA C program perform Matrix multiplication|
+|5|mult_openmp.c|This C program perform Matrix multiplication with OpenMP|
+|6|mult_posix.c|This C program perform Matrix multiplication with POSIX threads|
 
 ## Q1. Performance comparison of pthread and openMP for a parallelizable problem
 A parallelizable problem in computer architecture is a problem that can be divided into smaller independent sub-problems that can be solved concurrently using multiple processors or cores. One such example of a parallelizable problem is Matrix addition.

@@ -45,7 +45,9 @@ The output files are saved in the ```m5out``` directory. The files present are:
 cd SPEC
 ./runGem5.sh
 ```
-In this script, the directory for gem5, SPEC benchmark and the input arg file paths have been specified. The SPEC program used is ```470.lbm```. The cache levels and cache sizes at each level can be specified as arguments. The CPU type used is ```TimingSimpleCPU```.
+In this script, the directory for gem5, SPEC benchmark and the input arg file paths have been specified. The SPEC program used is ```429.mcf```. The cache levels and cache sizes at each level can be specified as arguments. The CPU type used is ```TimingSimpleCPU```. 
+
+<strong>Note: As we had to evaluate the metrics across varying L1 cache sizes of 16KB, 32KB and 64KB, we have split the size equally between L1d and L1i during the simulation. </strong>
 
 TimingSimpleCPU is a CPU model provides a simplified, cycle-accurate timing model of a simple, in-order, single-issue processor. It models the functional behavior of a CPU without considering many of the implementation details that affect performance, such as pipelining, caching, and branch prediction.
 
@@ -61,10 +63,74 @@ There are 5 SPEC CPU benchmark programs. They are as follows:
 
 These can be found in the ```SPEC``` directory.
 
-## Analysing gem5 output
-- sim_seconds: how long the program ran i the simulated machine
-- host_seconds: how long it took in the host machine
+### 429.mcf
 
+We have used ```429.mcf``` for simulation. The 429.mcf benchmark is a performance benchmark included in the SPEC CPU benchmark suite that measures the performance of a computer system when running the Mini-Contest File (MCF) application. 
+
+MCF is a combinatorial optimization problem that arises in the context of planning the movement of goods through a transportation network. The MCF problem involves finding the optimal way to route goods from a set of suppliers to a set of destinations while minimizing the total transportation cost. 
+
+The benchmark uses a set of real-world data files that represent transportation networks of varying sizes, and the goal is to find the optimal solution for each network within a given time limit. The benchmark is a representative workload for supply chain optimization and transportation planning applications, and its performance can provide insights into the capabilities of a computer system for these types of applications.
+
+
+## Analysing gem5 output
+- ```sim_seconds:``` how long the program ran in the simulated machine
+- ```host_seconds:``` how long it took in the host machine
+
+- ```system.cpu.dcache.overallMissRate::total:``` This attribute represents the total miss rate of the CPU's data cache. A cache miss occurs when the CPU requests data that is not available in the cache, and the data has to be retrieved from a higher level memory hierarchy (such as main memory).
+
+- ```system.cpu.icache.overallMissRate::total:``` This attribute represents the total miss rate of the CPU's instruction cache. A cache miss occurs when the CPU requests an instruction that is not available in the cache and has to be retrieved from a higher level memory hierarchy.
+
+- ```system.l2.overallMissRate::total:``` This attribute represents the total miss rate of the L2 cache. The L2 cache is a shared cache that sits between the CPU and the main memory. It is typically larger than the CPU's caches and is used to reduce the average memory access time.
+
+- ```system.cpu.dcache.overallHits::total:``` This attribute represents the total number of hits (i.e., cache hits) in the CPU's data cache.
+
+- ```system.cpu.icache.overallHits::total:``` This attribute represents the total number of hits in the CPU's instruction cache.
+
+- ```system.l2.overallHits::total:``` This attribute represents the total number of hits in the L2 cache.
+
+- ```system.cpu.dcache.overallAccesses::total:``` This attribute represents the total number of accesses (i.e., cache hits + cache misses) in the CPU's data cache.
+
+- ```system.cpu.icache.overallAccesses::total:``` This attribute represents the total number of accesses in the CPU's instruction cache.
+
+- ```system.l2.overallAccesses::total:``` This attribute represents the total number of accesses in the L2 cache.
+
+## Plots
+### L1 cache size v/s L1D Hit rate
+<img src="FIGURES/l1_vs_l1hit.png" alt="l1-l1hit" width="500">
+
+Note: As the values of Data hit rate of L1D cache were very close by, we have plotted just the variation of the L1d hit rate with 2MB L2 cache. 
+
+We can see that for a given L2 cahce size, the L1 hit rate for both Data and Intruction Cache at the L1 level decreases.
+
+### L2 Cache size v/s L2 Hit rate across different L1 cache sizes
+<img src="FIGURES/l2_vs_l2hit.png" alt="l2-l2hit" width="500">
+
+It is evident from the graph that as the L2 cache size increases, the L2 hit rate increases. We can also see that as the L1 cache size increases, the Hit rate for L2 decreases. A possible interpretation would be that as the size of L1 cache decreases, the chances of finding the requested data in the L1 cache would also decrease, leading to more requests being sent to the L2 cache. This increased traffic to the L2 cache may result in more hits (i.e., the data being found in the L2 cache), which would increase the L2 hit rate.
+
+However, it's important to note that this interpretation would depend on the specific architecture of the system being analyzed, and it may not always hold true. Other factors, such as the access patterns of the program being run, associativity and cache replacement policy could also influence the cache hit rates. 
+
+Therefore, it's important to analyze the data in context and consider all relevant factors before drawing any conclusions.
+
+### L2 Cache size v/s L2 Miss rate across different L1 cache sizes
+<img src="FIGURES/l2_vs_l2miss.png" alt="l2-l2miss" width="500">
+
+Complementary to the above graph, we can observe a similar trend here with the same reasoning as stated earlier.
+
+### L2 Cache size v/s L2 AMAT across different L1 cache sizes
+![l2-AMATl2](FIGURES/l2_vs_AMAT_l2.png)
+In this graph, we can observe that as the size of L2 cache increase, there is a sharp decline in the AMAT. However, as the L1 cache size increases, there is an increase in the AMAT at the L2 level.
+
+### Table of data obtained
+![table1](FIGURES/table1.png)
+![table2](FIGURES/table1.png)
+
+These are the default values that are set by the simulator and have been utilised while calculating AMAT.
+|Metric| Cache Level | Time (in ns) | 
+| ----- | -------- | -------- | 
+|Hit Time|L1|1|
+|Miss Penalty|L1|10|
+|Hit Time|L2|10|
+|Miss Penalty|L2|100|
 ## Directory details of gem5
 ```console
 tree - L 1
