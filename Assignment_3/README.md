@@ -79,7 +79,6 @@ By using vector instructions, such as SIMD operations, the arithmetic operations
 
 
 ## Vectorizable Program 
-We are performing matrix multiplication of two matrices of size ```2000 x 2000```.
 
 #### Using OpenMP
 ```console
@@ -106,6 +105,8 @@ nvcc mult_cuda.cu
 ```console
 Execution time with CUDA: 0.166911 seconds
 ```
+
+We have performed matrix multiplication of two matrices of size ```2000 x 2000```.
 ### Analysis
 - Comparing the execution time across POSIX threads, OpenMP and CUDA, we can see that there is a significant speed-up in the case of CUDA incorporated matrix multiplication. Matrix multiplication is a computationally intensive task that involves a large number of mathematical operations that can be performed in parallel. GPUs, with their many processing cores, can perform these operations simultaneously, which allows for significant speedups over CPUs.
 
@@ -153,9 +154,6 @@ sudo dpkg -i cuda-repo-ubuntu2204-12-1-local_12.1.0-530.30.02-1_amd64.deb
 ```
 ```console
 sudo cp /var/cuda-repo-ubuntu2204-12-1-local/cuda-*-keyring.gpg /usr/share/keyrings/
-```
-```console
-sudo apt-get update
 ```
 ```console
 sudo apt-get -y install cuda
